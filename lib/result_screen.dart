@@ -1,14 +1,39 @@
+import 'dart:math';
+import 'package:bmi_calculator/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key});
+class ResultScreen extends StatelessWidget {
+  const ResultScreen(
+      {super.key,
+      required this.gender,
+      required this.age,
+      required this.height,
+      required this.heightUnit,
+      required this.weight,
+      required this.weightUnit,
+      required this.bmi,
+      required this.status,
+      required this.range,
+      required this.tip1,
+      required this.tip2,
+      required this.tip3,
+      required this.tip4});
 
-  @override
-  State<ResultScreen> createState() => _HomeScreenState();
-}
+  final int gender;
+  final double age;
+  final double height;
+  final String heightUnit;
+  final double weight;
+  final String weightUnit;
+  final double bmi;
+  final String status;
+  final String range;
+  final String tip1;
+  final String tip2;
+  final String tip3;
+  final String tip4;
 
-class _HomeScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +68,10 @@ class _HomeScreenState extends State<ResultScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(9),
                             child: SvgPicture.asset(
-                              "images/Male.svg",
-                              color: Color(0xFF81b632),
+                              gender == 1
+                                  ? "images/Female.svg"
+                                  : "images/Male.svg",
+                              color: Color(0xFFFFFFFF),
                             ),
                           ),
                         ),
@@ -64,6 +91,19 @@ class _HomeScreenState extends State<ResultScreen> {
                                 children: [
                                   Positioned.fill(
                                     child: Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        age.toStringAsFixed(0),
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFFFFFFFF),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Text(
                                         'y/o',
@@ -74,21 +114,54 @@ class _HomeScreenState extends State<ResultScreen> {
                                       ),
                                     ),
                                   ),
-                                  Positioned.fill(
-                                    child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: Text(
-                                        '24',
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF81b632),
-                                        ),
+                                ],
+                              )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 65,
+                          width: 65,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF494A4F),
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      (heightUnit == 'feet' ||
+                                              heightUnit == 'm')
+                                          ? height.toStringAsFixed(1)
+                                          : height.toStringAsFixed(0),
+                                      style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFFFFFFFF),
                                       ),
                                     ),
                                   ),
-                                ],
-                              )),
+                                ),
+                                Positioned.fill(
+                                  child: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      heightUnit,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Color(0xFF81b632),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10,
@@ -106,66 +179,24 @@ class _HomeScreenState extends State<ResultScreen> {
                                 children: [
                                   Positioned.fill(
                                     child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Text(
-                                        'cm',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF81b632),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Text(
-                                        '170',
+                                        weight.toStringAsFixed(0),
                                         style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xFF81b632),
+                                          color: Color(0xFFFFFFFF),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
-                              )),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          height: 65,
-                          width: 65,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF494A4F),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Stack(
-                                children: [
                                   Positioned.fill(
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Text(
-                                        'kg',
+                                        weightUnit,
                                         style: TextStyle(
                                           fontSize: 18,
-                                          color: Color(0xFF81b632),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: Text(
-                                        '60',
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
                                           color: Color(0xFF81b632),
                                         ),
                                       ),
@@ -198,7 +229,8 @@ class _HomeScreenState extends State<ResultScreen> {
                             ),
                           ),
                           Transform.rotate(
-                            angle: 30 * (3.14 / 180),
+                            angle: max(0, min(((bmi - 16) / 24) * 180, 180)) *
+                                (3.14 / 180),
                             child: Positioned.fill(
                               child: Align(
                                 alignment: Alignment.center,
@@ -227,7 +259,7 @@ class _HomeScreenState extends State<ResultScreen> {
                                     ),
                                   ),
                                   Text(
-                                    '23.5',
+                                    bmi.toStringAsFixed(1),
                                     style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
@@ -246,7 +278,7 @@ class _HomeScreenState extends State<ResultScreen> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Text(
-                                      'Very Severely Underweight',
+                                      status,
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -254,7 +286,7 @@ class _HomeScreenState extends State<ResultScreen> {
                                       ),
                                     ),
                                     Text(
-                                      '18.5 - 24.9',
+                                      range,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -274,6 +306,7 @@ class _HomeScreenState extends State<ResultScreen> {
                 ),
                 Divider(
                   height: 0,
+                  color: Color(0xFF494a4f),
                 ),
                 SizedBox(
                   height: 20,
@@ -286,7 +319,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFF224af2),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -312,7 +345,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Very Severely Underweight (<=15.9)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                   ],
@@ -325,7 +358,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFF21a6f3),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -351,7 +384,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Severely Underweight (16.0 - 16.9)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                   ],
@@ -364,7 +397,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFF40bca3),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -390,7 +423,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Underweight (17.0 - 18.4)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                     Flexible(
@@ -405,7 +438,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFF40bc64),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -431,7 +464,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Normal (18.5 - 24.9)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                   ],
@@ -444,7 +477,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFFd8c335),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -470,7 +503,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Overweight (25.0 - 29.9)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                     Flexible(
@@ -485,7 +518,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFFd89935),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -511,7 +544,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Obese Class I (30.0 - 34.9)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                   ],
@@ -524,7 +557,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFFfc5448),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -550,7 +583,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Obese Class II (35.0 - 39.9)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                     Flexible(
@@ -565,7 +598,7 @@ class _HomeScreenState extends State<ResultScreen> {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF81B632),
+                            color: Color(0xFFff1d1d),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -591,7 +624,7 @@ class _HomeScreenState extends State<ResultScreen> {
                       'Obese Class III (>=40.0)',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFFFFFFFF),
+                        color: Color(0xFF64676e),
                       ),
                     ),
                   ],
@@ -601,6 +634,7 @@ class _HomeScreenState extends State<ResultScreen> {
                 ),
                 Divider(
                   height: 0,
+                  color: Color(0xFF494a4f),
                 ),
                 SizedBox(
                   height: 20,
@@ -609,8 +643,116 @@ class _HomeScreenState extends State<ResultScreen> {
                   'TIPS',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Color(0xFFFFFFFF),
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF81b632),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF81b632),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      child: Text(
+                        tip2,
+                        softWrap: true,
+                        maxLines: 2,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF81b632),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      child: Text(
+                        tip3,
+                        softWrap: true,
+                        maxLines: 2,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF81b632),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      child: Text(
+                        tip1,
+                        softWrap: true,
+                        maxLines: 2,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF81b632),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      child: Text(
+                        tip4,
+                        softWrap: true,
+                        maxLines: 2,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             )),
