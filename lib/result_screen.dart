@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:bmi_calculator/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -49,11 +48,22 @@ class ResultScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF64676E),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 30, 25, 30),
+        padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
         child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+          scrollDirection: Axis.vertical,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height -
+                AppBar().preferredSize.height -
+                MediaQuery.of(context).padding.top,
+            width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
+                const Flexible(
+                  fit: FlexFit.loose,
+                  child: SizedBox(
+                    height: 50,
+                  ),
+                ),
                 Row(
                   children: [
                     Column(
@@ -62,7 +72,7 @@ class ResultScreen extends StatelessWidget {
                           height: 65,
                           width: 65,
                           decoration: BoxDecoration(
-                            color: Color(0xFF494A4F),
+                            color: const Color(0xFF494A4F),
                             borderRadius: BorderRadius.circular(40),
                           ),
                           child: Padding(
@@ -71,18 +81,19 @@ class ResultScreen extends StatelessWidget {
                               gender == 1
                                   ? "images/Female.svg"
                                   : "images/Male.svg",
-                              color: Color(0xFFFFFFFF),
+                              colorFilter: const ColorFilter.mode(
+                                  Color(0xFFFFFFFF), BlendMode.srcIn),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
                           height: 65,
                           width: 65,
                           decoration: BoxDecoration(
-                            color: Color(0xFF494A4F),
+                            color: const Color(0xFF494A4F),
                             borderRadius: BorderRadius.circular(40),
                           ),
                           child: Padding(
@@ -94,7 +105,7 @@ class ResultScreen extends StatelessWidget {
                                       alignment: Alignment.topCenter,
                                       child: Text(
                                         age.toStringAsFixed(0),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFFFFFFFF),
@@ -102,7 +113,7 @@ class ResultScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Positioned.fill(
+                                  const Positioned.fill(
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Text(
@@ -117,14 +128,14 @@ class ResultScreen extends StatelessWidget {
                                 ],
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
                           height: 65,
                           width: 65,
                           decoration: BoxDecoration(
-                            color: Color(0xFF494A4F),
+                            color: const Color(0xFF494A4F),
                             borderRadius: BorderRadius.circular(40),
                           ),
                           child: Padding(
@@ -139,7 +150,7 @@ class ResultScreen extends StatelessWidget {
                                               heightUnit == 'm')
                                           ? height.toStringAsFixed(1)
                                           : height.toStringAsFixed(0),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFFFFFFFF),
@@ -152,7 +163,7 @@ class ResultScreen extends StatelessWidget {
                                     alignment: Alignment.bottomCenter,
                                     child: Text(
                                       heightUnit,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 18,
                                         color: Color(0xFF81b632),
                                       ),
@@ -163,14 +174,14 @@ class ResultScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
                           height: 65,
                           width: 65,
                           decoration: BoxDecoration(
-                            color: Color(0xFF494A4F),
+                            color: const Color(0xFF494A4F),
                             borderRadius: BorderRadius.circular(40),
                           ),
                           child: Padding(
@@ -182,7 +193,7 @@ class ResultScreen extends StatelessWidget {
                                       alignment: Alignment.topCenter,
                                       child: Text(
                                         weight.toStringAsFixed(0),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFFFFFFFF),
@@ -195,7 +206,7 @@ class ResultScreen extends StatelessWidget {
                                       alignment: Alignment.bottomCenter,
                                       child: Text(
                                         weightUnit,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 18,
                                           color: Color(0xFF81b632),
                                         ),
@@ -207,7 +218,7 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Flexible(
+                    const Flexible(
                       fit: FlexFit.tight,
                       child: SizedBox(
                         width: double.infinity,
@@ -236,7 +247,6 @@ class ResultScreen extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: SvgPicture.asset(
                                   "images/Pointer.svg",
-                                  color: Color(0xFF22252A),
                                   height: 260,
                                   width: 260,
                                 ),
@@ -250,7 +260,7 @@ class ResultScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'BMI',
                                     style: TextStyle(
                                       fontSize: 18,
@@ -260,7 +270,7 @@ class ResultScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     bmi.toStringAsFixed(1),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF81B632),
@@ -279,7 +289,7 @@ class ResultScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       status,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFFFFFFFF),
@@ -287,7 +297,7 @@ class ResultScreen extends StatelessWidget {
                                     ),
                                     Text(
                                       range,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFF6A6D72),
@@ -301,14 +311,14 @@ class ResultScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 30,
                 ),
-                Divider(
+                const Divider(
                   height: 0,
                   color: Color(0xFF494a4f),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -319,7 +329,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF224af2),
+                            color: const Color(0xFF224af2),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -330,7 +340,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -338,10 +348,10 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Very Severely Underweight (<=15.9)',
                       style: TextStyle(
                         fontSize: 12,
@@ -358,7 +368,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF21a6f3),
+                            color: const Color(0xFF21a6f3),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -369,7 +379,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -377,10 +387,10 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Severely Underweight (16.0 - 16.9)',
                       style: TextStyle(
                         fontSize: 12,
@@ -397,7 +407,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF40bca3),
+                            color: const Color(0xFF40bca3),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -408,7 +418,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -416,17 +426,17 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Underweight (17.0 - 18.4)',
                       style: TextStyle(
                         fontSize: 12,
                         color: Color(0xFF64676e),
                       ),
                     ),
-                    Flexible(
+                    const Flexible(
                       fit: FlexFit.tight,
                       child: SizedBox(
                         width: 5,
@@ -438,7 +448,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFF40bc64),
+                            color: const Color(0xFF40bc64),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -449,7 +459,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -457,10 +467,10 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Normal (18.5 - 24.9)',
                       style: TextStyle(
                         fontSize: 12,
@@ -477,7 +487,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFFd8c335),
+                            color: const Color(0xFFd8c335),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -488,7 +498,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -496,17 +506,17 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Overweight (25.0 - 29.9)',
                       style: TextStyle(
                         fontSize: 12,
                         color: Color(0xFF64676e),
                       ),
                     ),
-                    Flexible(
+                    const Flexible(
                       fit: FlexFit.tight,
                       child: SizedBox(
                         width: 5,
@@ -518,7 +528,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFFd89935),
+                            color: const Color(0xFFd89935),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -529,7 +539,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -537,10 +547,10 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Obese Class I (30.0 - 34.9)',
                       style: TextStyle(
                         fontSize: 12,
@@ -557,7 +567,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFFfc5448),
+                            color: const Color(0xFFfc5448),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -568,7 +578,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -576,17 +586,17 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Obese Class II (35.0 - 39.9)',
                       style: TextStyle(
                         fontSize: 12,
                         color: Color(0xFF64676e),
                       ),
                     ),
-                    Flexible(
+                    const Flexible(
                       fit: FlexFit.tight,
                       child: SizedBox(
                         width: 5,
@@ -598,7 +608,7 @@ class ResultScreen extends StatelessWidget {
                           height: 13,
                           width: 13,
                           decoration: BoxDecoration(
-                            color: Color(0xFFff1d1d),
+                            color: const Color(0xFFff1d1d),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -609,7 +619,7 @@ class ResultScreen extends StatelessWidget {
                               height: 7,
                               width: 7,
                               decoration: BoxDecoration(
-                                color: Color(0xFF22252A),
+                                color: const Color(0xFF22252A),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                             ),
@@ -617,10 +627,10 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       'Obese Class III (>=40.0)',
                       style: TextStyle(
                         fontSize: 12,
@@ -629,17 +639,17 @@ class ResultScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Divider(
+                const Divider(
                   height: 0,
                   color: Color(0xFF494a4f),
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 30,
                 ),
-                Text(
+                const Text(
                   'TIPS',
                   style: TextStyle(
                     fontSize: 15,
@@ -647,7 +657,7 @@ class ResultScreen extends StatelessWidget {
                     color: Color(0xFF81b632),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -656,11 +666,11 @@ class ResultScreen extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                        color: Color(0xFF81b632),
+                        color: const Color(0xFF81b632),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Flexible(
@@ -669,7 +679,7 @@ class ResultScreen extends StatelessWidget {
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFFFFFFF),
                         ),
                       ),
@@ -682,11 +692,11 @@ class ResultScreen extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                        color: Color(0xFF81b632),
+                        color: const Color(0xFF81b632),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Flexible(
@@ -695,7 +705,7 @@ class ResultScreen extends StatelessWidget {
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFFFFFFF),
                         ),
                       ),
@@ -708,11 +718,11 @@ class ResultScreen extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                        color: Color(0xFF81b632),
+                        color: const Color(0xFF81b632),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Flexible(
@@ -721,7 +731,7 @@ class ResultScreen extends StatelessWidget {
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFFFFFFF),
                         ),
                       ),
@@ -734,11 +744,11 @@ class ResultScreen extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                        color: Color(0xFF81b632),
+                        color: const Color(0xFF81b632),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Flexible(
@@ -747,15 +757,23 @@ class ResultScreen extends StatelessWidget {
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFFFFFFF),
                         ),
                       ),
                     ),
                   ],
                 ),
+                const Flexible(
+                  fit: FlexFit.tight,
+                  child: SizedBox(
+                    height: double.infinity,
+                  ),
+                ),
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
