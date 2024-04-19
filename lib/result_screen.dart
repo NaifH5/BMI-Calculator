@@ -5,33 +5,33 @@ import 'package:flutter_svg/flutter_svg.dart';
 class ResultScreen extends StatelessWidget {
   const ResultScreen(
       {super.key,
-      required this.gender,
-      required this.age,
-      required this.height,
-      required this.heightUnit,
-      required this.weight,
-      required this.weightUnit,
-      required this.bmi,
-      required this.status,
-      required this.range,
-      required this.tip1,
-      required this.tip2,
-      required this.tip3,
-      required this.tip4});
+      this.gender,
+      this.age,
+      this.height,
+      this.heightUnit,
+      this.weight,
+      this.weightUnit,
+      this.bmi,
+      this.status,
+      this.range,
+      this.tip1,
+      this.tip2,
+      this.tip3,
+      this.tip4});
 
-  final int gender;
-  final double age;
-  final double height;
-  final String heightUnit;
-  final double weight;
-  final String weightUnit;
-  final double bmi;
-  final String status;
-  final String range;
-  final String tip1;
-  final String tip2;
-  final String tip3;
-  final String tip4;
+  final int? gender;
+  final double? age;
+  final double? height;
+  final String? heightUnit;
+  final double? weight;
+  final String? weightUnit;
+  final double? bmi;
+  final String? status;
+  final String? range;
+  final String? tip1;
+  final String? tip2;
+  final String? tip3;
+  final String? tip4;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class ResultScreen extends StatelessWidget {
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Text(
-                                        age.toStringAsFixed(0),
+                                        age!.toStringAsFixed(0),
                                         style: const TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
@@ -148,8 +148,8 @@ class ResultScreen extends StatelessWidget {
                                     child: Text(
                                       (heightUnit == 'feet' ||
                                               heightUnit == 'm')
-                                          ? height.toStringAsFixed(1)
-                                          : height.toStringAsFixed(0),
+                                          ? height!.toStringAsFixed(1)
+                                          : height!.toStringAsFixed(0),
                                       style: const TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
@@ -162,7 +162,7 @@ class ResultScreen extends StatelessWidget {
                                   child: Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Text(
-                                      heightUnit,
+                                      heightUnit!,
                                       style: const TextStyle(
                                         fontSize: 18,
                                         color: Color(0xFF81b632),
@@ -192,7 +192,7 @@ class ResultScreen extends StatelessWidget {
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: Text(
-                                        weight.toStringAsFixed(0),
+                                        weight!.toStringAsFixed(0),
                                         style: const TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
@@ -205,7 +205,7 @@ class ResultScreen extends StatelessWidget {
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Text(
-                                        weightUnit,
+                                        weightUnit!,
                                         style: const TextStyle(
                                           fontSize: 18,
                                           color: Color(0xFF81b632),
@@ -240,7 +240,7 @@ class ResultScreen extends StatelessWidget {
                             ),
                           ),
                           Transform.rotate(
-                            angle: max(0, min(((bmi - 16) / 24) * 180, 180)) *
+                            angle: max(0, min(((bmi! - 16) / 24) * 180, 180)) *
                                 (3.14 / 180),
                             child: Positioned.fill(
                               child: Align(
@@ -269,7 +269,7 @@ class ResultScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    bmi.toStringAsFixed(1),
+                                    bmi!.toStringAsFixed(1),
                                     style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
@@ -288,7 +288,7 @@ class ResultScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Text(
-                                      status,
+                                      status!,
                                       style: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -296,7 +296,7 @@ class ResultScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      range,
+                                      range!,
                                       style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -675,7 +675,7 @@ class ResultScreen extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        tip2,
+                        tip2!,
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.left,
@@ -701,7 +701,7 @@ class ResultScreen extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        tip3,
+                        tip3!,
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.start,
@@ -727,7 +727,7 @@ class ResultScreen extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        tip1,
+                        tip1!,
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.left,
@@ -753,7 +753,7 @@ class ResultScreen extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        tip4,
+                        tip4!,
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.left,
