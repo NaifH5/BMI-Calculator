@@ -10,4 +10,4 @@ Built with Flutter and Dart in Android Studio, this BMI (Body Mass Index) calcul
 
 This application used validations to ensure correct results.
 
-![Screen](https://github.com/NaifH5/BMI-Calculator/assets/95228176/306e866f-f113-4d30-8a4a-b2fc0387deb3)
+![Screen](https://github.com/NaifH5/BMI-Calculator/assets/95228176/e8f8408f-ba1d-4b59-826e-2a7cd5a672e9)
