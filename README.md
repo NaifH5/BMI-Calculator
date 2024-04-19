@@ -1,16 +1,13 @@
-# bmi_calculator
+# BMI Calculator
 
-bmi calculator project.
+Built with Flutter and Dart in Android Studio, this BMI (Body Mass Index) calculator offers a responsive UI design that adjusts to various screen sizes, ensuring a seamless experience on both phones and tablets. To view the functionalities of this application, you can check [here](https://appetize.io/app/xeghcrg2c6xj3gl7qng5cmypju?device=pixel7&osVersion=13.0).
 
-## Getting Started
+### Screenshots
 
-This project is a starting point for a Flutter application.
+![Mock 1](https://github.com/NaifH5/BMI-Calculator/assets/95228176/0a30e081-d1ac-4487-94c2-e1bd75f7cb4d)
 
-A few resources to get you started if this is your first Flutter project:
+### Validation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This application used validations to ensure correct results.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screen](https://github.com/NaifH5/BMI-Calculator/assets/95228176/306e866f-f113-4d30-8a4a-b2fc0387deb3)
